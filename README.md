@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.imgur.com/jW5RDtg.png" width="300">
+    <img src="https://i.imgur.com/jW5RDtg.png" width="400">
 </p>
 
 [![Java JDK][java-jdk-badge]][java-jdk-url]
