@@ -1,6 +1,7 @@
 package com.udemy.cotroller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,14 +14,18 @@ public class ExampleController {
     
     //Primera forma
     @GetMapping("/exampleString")
-    public String exampleString() {
+    public String exampleString(Model model) {
+        model.addAttribute("name", "Giovanni");
         return EXAMPLE_VIEW;
     }
 
     //Segunda forma
     @GetMapping("/exampleMAV")
     public ModelAndView exampleMAV() {
-        return new ModelAndView(EXAMPLE_VIEW);
+        ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
+        mav.addObject("name", "Johanny");
+
+        return mav;
     }
 
 }
