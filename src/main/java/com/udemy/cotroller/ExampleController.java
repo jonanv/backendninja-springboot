@@ -1,5 +1,6 @@
 package com.udemy.cotroller;
 
+import com.udemy.model.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ public class ExampleController {
     //Primera forma
     @GetMapping("/exampleString")
     public String exampleString(Model model) {
-        model.addAttribute("name", "Giovanni");
+        model.addAttribute("person", new Person("Giovanni", 28));
         return EXAMPLE_VIEW;
     }
 
@@ -23,7 +24,7 @@ public class ExampleController {
     @GetMapping("/exampleMAV")
     public ModelAndView exampleMAV() {
         ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-        mav.addObject("name", "Johanny");
+        mav.addObject("person", new Person("Michael", 23));
 
         return mav;
     }
