@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    
+    <form action="#" th:action="@{/example3/addperson}" th:object="${person}" method="post">
+        <p>
+            NAME:
+            <input type="text" name="" id="" th:field="*{name}">
+        </p>
+        <p>
+            AGE:
+            <input type="number" name="" id="" th:field="*{age}">
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+
+</body>
+</html>
