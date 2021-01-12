@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/example")
 public class ExampleController {
@@ -16,7 +19,7 @@ public class ExampleController {
     //Primera forma
     @GetMapping("/exampleString")
     public String exampleString(Model model) {
-        model.addAttribute("person", new Person("Giovanni", 28));
+        model.addAttribute("people", getPeople());
         return EXAMPLE_VIEW;
     }
 
@@ -24,9 +27,17 @@ public class ExampleController {
     @GetMapping("/exampleMAV")
     public ModelAndView exampleMAV() {
         ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-        mav.addObject("person", new Person("Michael", 23));
+        mav.addObject("people", getPeople());
 
         return mav;
     }
 
+    private List<Person> getPeople() {
+        List<Person> people = new ArrayList<>();
+        people.add(new Person("Juan", 26));
+        people.add(new Person("Diego", 30));
+        people.add(new Person("Eva", 22));
+        people.add(new Person("Pedro", 35));
+        return people;
+    }
 }
