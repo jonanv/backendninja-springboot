@@ -2,6 +2,7 @@ package com.udemy.cotroller;
 
 import com.udemy.component.ExampleComponent;
 import com.udemy.model.Person;
+import com.udemy.service.ExampleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/example")
 public class ExampleController {
@@ -24,13 +22,17 @@ public class ExampleController {
     @Autowired // Le indica a Spring que se va inyectar un componente que se encuentra en la memoria
     @Qualifier("exampleComponent") // Le indica Spring el nombre del bean que esta en su memoria
     private ExampleComponent exampleComponent;
+
+    @Autowired
+    @Qualifier("exampleService")
+    private ExampleService exampleService;
     
     //Primera forma
     // @RequestMapping(method=RequestMethod.GET, value="/exampleString")
     @GetMapping("/exampleString")
     public String exampleString(Model model) {
         exampleComponent.sayHello();
-        model.addAttribute("people", getPeople());
+        model.addAttribute("people", exampleService.getListPeople());
         return EXAMPLE_VIEW;
     }
 
@@ -38,17 +40,8 @@ public class ExampleController {
     @GetMapping("/exampleMAV")
     public ModelAndView exampleMAV() {
         ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-        mav.addObject("people", getPeople());
+        mav.addObject("people", exampleService.getListPeople());
 
         return mav;
-    }
-
-    private List<Person> getPeople() {
-        List<Person> people = new ArrayList<>();
-        people.add(new Person("Juan", 26));
-        people.add(new Person("Diego", 30));
-        people.add(new Person("Eva", 22));
-        people.add(new Person("Pedro", 35));
-        return people;
     }
 }
