@@ -1,7 +1,6 @@
 package com.udemy.cotroller;
 
 import com.udemy.component.ExampleComponent;
-import com.udemy.model.Person;
 import com.udemy.service.ExampleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
