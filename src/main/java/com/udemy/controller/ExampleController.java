@@ -1,4 +1,4 @@
-package com.udemy.cotroller;
+package com.udemy.controller;
 
 import com.udemy.component.ExampleComponent;
 import com.udemy.service.ExampleService;

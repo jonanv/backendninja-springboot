@@ -1,4 +1,4 @@
-package com.udemy.cotroller;
+package com.udemy.controller;
 
 import com.udemy.model.Person;
 
