@@ -77,5 +77,11 @@ public class Course {
     public void setHours(int hours) {
         this.hours = hours;
     }
+
+    @Override
+    public String toString() {
+        return "Course [description=" + description + ", hours=" + hours + ", id=" + id + ", name=" + name + ", price="
+                + price + "]";
+    }
     
 }

@@ -1,6 +1,5 @@
 package com.udemy.controller;
 
-import com.udemy.component.RequestTimeInterceptor;
 import com.udemy.service.ExerciseService;
 
 import org.apache.commons.logging.Log;

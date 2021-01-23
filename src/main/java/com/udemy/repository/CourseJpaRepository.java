@@ -1,7 +1,6 @@
 package com.udemy.repository;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.udemy.entity.Course;
 
