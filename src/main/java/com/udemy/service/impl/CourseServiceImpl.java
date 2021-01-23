@@ -16,23 +16,25 @@ public class CourseServiceImpl implements CourseService {
     private CourseJpaRepository courseJpaRepository;
 
     @Override
-    public Course addCourse(Course course) {
-        return null;
+    public List<Course> listAllCourses() {
+        return courseJpaRepository.findAll();
     }
 
     @Override
-    public List<Course> listAllCourses() {
+    public Course addCourse(Course course) {
+        courseJpaRepository.save(course);
         return null;
     }
 
     @Override
     public int removeCourse(int id) {
+        courseJpaRepository.deleteById(id);;
         return 0;
     }
 
     @Override
     public Course updateCourse(Course course) {
-        return null;
+        return courseJpaRepository.save(course);
     }
     
 }
