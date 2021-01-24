@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,14 +29,15 @@ public class CourseController {
     public ModelAndView listAllCourses() {
         LOG.info("Call: " + "listAllCourses()");
         ModelAndView mav = new ModelAndView(COURSES_VIEW);
+        mav.addObject("course", new Course());
         mav.addObject("courses", courseService.listAllCourses());
         return mav;
     }
 
-    @GetMapping("/addcourse")
+    @PostMapping("/addcourse")
     public String addCourse(@ModelAttribute("course") Course course) {
         LOG.info("Call: " + "addCourse()" + " -- Param: " + course.toString());
         courseService.addCourse(course);
-        return "redirect:/listCourses";
+        return "redirect:/courses/listcourses";
     }
 }

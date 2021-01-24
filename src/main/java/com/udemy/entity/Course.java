@@ -80,8 +80,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course [description=" + description + ", hours=" + hours + ", id=" + id + ", name=" + name + ", price="
-                + price + "]";
+        return "Course [id=" + id + ", name=" + name + ", description=" + description + ", hours=" + hours + ", price=" + price + "]";
     }
     
 }
