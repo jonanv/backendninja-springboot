@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     private static final String LOGIN_VIEW = "login";
+    private static final String CONTACTS_VIEW = "contacts";
     
     @GetMapping("/")
     public String redirectToLogin() {
@@ -21,8 +22,10 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model, 
-            @RequestParam(name="error", required=false) String error) {
+            @RequestParam(name="error", required=false) String error,
+            @RequestParam(name="logout", required=false) String logout) {
         model.addAttribute("error", error);
+        model.addAttribute("logout", logout);
         model.addAttribute("userCredential", new UserCredential());
         return LOGIN_VIEW;
     }
@@ -30,7 +33,7 @@ public class LoginController {
     @PostMapping("/logincheck")
     public String loginCheck(@ModelAttribute(name="userCredential") UserCredential userCredential) {
         if (userCredential.getUsername().equals("user") && userCredential.getPassword().equals("user")) {
-            return "contacts";
+            return CONTACTS_VIEW;
         }
         return "redirect:/login?error";
     }
