@@ -1,32 +1,17 @@
-package com.udemy.entity;
+package com.udemy.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="contact")
-public class Contact {
-
-    @Id
-    @GeneratedValue
-    @Column(name="id")
+public class ContactModel {
+    
     private String id;
-    @Column(name="firstname")
     private String firstname;
-    @Column(name="lastname")
     private String lastname;
-    @Column(name="telephone")
     private String telephone;
-    @Column(name="city")
     private String city;
 
-    public Contact() {
+    public ContactModel() {
     }
 
-    public Contact(String firstname, String lastname, String telephone, String city) {
+    public ContactModel(String firstname, String lastname, String telephone, String city) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone = telephone;
@@ -67,8 +52,8 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact [firstname=" + firstname + ", lastname=" + lastname + ", telephone="
+        return "ContactModel [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", telephone=" 
             + telephone + ", city=" + city + "]";
     }
-    
+
 }
