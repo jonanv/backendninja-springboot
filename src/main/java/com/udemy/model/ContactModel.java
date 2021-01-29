@@ -2,7 +2,7 @@ package com.udemy.model;
 
 public class ContactModel {
     
-    private String id;
+    private int id;
     private String firstname;
     private String lastname;
     private String telephone;
@@ -11,11 +11,20 @@ public class ContactModel {
     public ContactModel() {
     }
 
-    public ContactModel(String firstname, String lastname, String telephone, String city) {
+    public ContactModel(int id, String firstname, String lastname, String telephone, String city) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone = telephone;
         this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -52,8 +61,8 @@ public class ContactModel {
 
     @Override
     public String toString() {
-        return "ContactModel [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", telephone=" 
-            + telephone + ", city=" + city + "]";
+        return "Contact [id " + id + ", firstname=" + firstname + ", lastname=" + lastname 
+            + ", telephone=" + telephone + ", city=" + city + "]";
     }
 
 }

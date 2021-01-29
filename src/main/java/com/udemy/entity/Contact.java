@@ -13,7 +13,7 @@ public class Contact {
     @Id
     @GeneratedValue
     @Column(name="id")
-    private String id;
+    private int id;
     @Column(name="firstname")
     private String firstname;
     @Column(name="lastname")
@@ -26,11 +26,20 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(String firstname, String lastname, String telephone, String city) {
+    public Contact(int id, String firstname, String lastname, String telephone, String city) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.telephone = telephone;
         this.city = city;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -67,8 +76,8 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact [firstname=" + firstname + ", lastname=" + lastname + ", telephone="
-            + telephone + ", city=" + city + "]";
+        return "Contact [id " + id + ", firstname=" + firstname + ", lastname=" + lastname 
+            + ", telephone=" + telephone + ", city=" + city + "]";
     }
     
 }
