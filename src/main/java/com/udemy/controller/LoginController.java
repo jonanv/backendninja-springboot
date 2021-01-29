@@ -1,5 +1,6 @@
 package com.udemy.controller;
 
+import com.udemy.constant.ViewConstant;
 import com.udemy.model.UserCredential;
 
 import org.apache.commons.logging.Log;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
-
-    private static final String LOGIN_VIEW = "login";
-    private static final String CONTACTS_VIEW = "contacts";
 
     private static final Log LOG = LogFactory.getLog(LoginController.class);
     
@@ -34,7 +32,7 @@ public class LoginController {
         model.addAttribute("error", error);
         model.addAttribute("logout", logout);
         model.addAttribute("userCredential", new UserCredential());
-        return LOGIN_VIEW;
+        return ViewConstant.LOGIN_VIEW;
     }
 
     @PostMapping("/logincheck")
@@ -42,7 +40,7 @@ public class LoginController {
         LOG.info("METHOD: loginCheck() -- PARAMS: userCredential=" + userCredential.toString());
         if (userCredential.getUsername().equals("user") && userCredential.getPassword().equals("user")) {
             LOG.info("Returning to contacts view");
-            return CONTACTS_VIEW;
+            return ViewConstant.CONTACTS_VIEW;
         }
         LOG.info("Redirect to login?error");
         return "redirect:/login?error";
