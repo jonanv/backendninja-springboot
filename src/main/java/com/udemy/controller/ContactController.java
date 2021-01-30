@@ -42,9 +42,15 @@ public class ContactController {
     public String addContact(@ModelAttribute(name="contactModel") ContactModel contactModel,
             Model model) {
         LOG.info("METHOD: addContact() -- PARAMS: contactModel=" + contactModel.toString());
-        model.addAttribute("result", 1);
-        contactService.addContact(contactModel);
+
+        if (contactService.addContact(contactModel) != null) {
+            model.addAttribute("result", 1);
+            return ViewConstant.CONTACTS_VIEW;
+        } else {
+            model.addAttribute("result", 0);
+        }
         return ViewConstant.CONTACTS_VIEW;
+        
     }
     
 }

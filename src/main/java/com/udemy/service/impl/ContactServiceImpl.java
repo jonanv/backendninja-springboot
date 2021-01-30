@@ -24,24 +24,24 @@ public class ContactServiceImpl implements ContactService {
     private ContactConverter contactConverter;
 
     @Override
-    public Contact addContact(ContactModel contactModel) {
+    public ContactModel addContact(ContactModel contactModel) {
         Contact contact = contactRepository.save(contactConverter.convertContactModel2Contact(contactModel));
-        return contact;
+        return contactConverter.convertContact2ContactModel(contact);
     }
 
-    @Override
-    public List<Contact> listAllContact() {
-        return null;
-    }
+    // @Override
+    // public List<Contact> listAllContact() {
+    //     return null;
+    // }
 
-    @Override
-    public int removeContact(int id) {
-        return 0;
-    }
+    // @Override
+    // public int removeContact(int id) {
+    //     return 0;
+    // }
 
-    @Override
-    public Contact updateContact(Contact contact) {
-        return null;
-    }
+    // @Override
+    // public Contact updateContact(Contact contact) {
+    //     return null;
+    // }
     
 }

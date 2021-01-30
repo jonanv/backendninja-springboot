@@ -7,12 +7,12 @@ import com.udemy.model.ContactModel;
 
 public interface ContactService {
 
-    public abstract List<Contact> listAllContact();
+    // public abstract List<Contact> listAllContact();
 
-    public abstract Contact addContact(ContactModel contactModel);
+    public abstract ContactModel addContact(ContactModel contactModel);
 
-    public abstract Contact updateContact(Contact contact);
+    // public abstract Contact updateContact(Contact contact);
 
-    public abstract int removeContact(int id);
+    // public abstract int removeContact(int id);
 
 }

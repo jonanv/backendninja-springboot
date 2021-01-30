@@ -10,6 +10,7 @@ public class ContactConverter {
     
     public Contact convertContactModel2Contact(ContactModel contactModel) {
         Contact contact = new Contact();
+        contact.setId(contactModel.getId());
         contact.setFirstname(contactModel.getFirstname());
         contact.setLastname(contactModel.getLastname());
         contact.setTelephone(contactModel.getTelephone());
@@ -19,6 +20,7 @@ public class ContactConverter {
 
     public ContactModel convertContact2ContactModel(Contact contact) {
         ContactModel contactModel = new ContactModel();
+        contactModel.setId(contact.getId());
         contactModel.setFirstname(contact.getFirstname());
         contactModel.setLastname(contact.getLastname());
         contactModel.setTelephone(contact.getTelephone());
