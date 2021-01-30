@@ -2,9 +2,12 @@ package com.udemy.controller;
 
 import com.udemy.constant.ViewConstant;
 import com.udemy.model.ContactModel;
+import com.udemy.service.ContactService;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ContactController {
 
     private static final Log LOG = LogFactory.getLog(ContactController.class);
+
+    @Autowired
+    @Qualifier("contactService")
+    private ContactService contactService;
 
     @GetMapping("/cancel")
     public String cancel() {
@@ -36,7 +43,7 @@ public class ContactController {
             Model model) {
         LOG.info("METHOD: addContact() -- PARAMS: contactModel=" + contactModel.toString());
         model.addAttribute("result", 1);
-        // model.addAttribute("contactModel", contactModel);
+        contactService.addContact(contactModel);
         return ViewConstant.CONTACTS_VIEW;
     }
     
