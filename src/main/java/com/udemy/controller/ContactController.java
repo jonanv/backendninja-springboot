@@ -8,7 +8,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 @RequestMapping("/contacts")
@@ -27,4 +30,11 @@ public class ContactController {
         model.addAttribute("contactModel", new ContactModel());
         return ViewConstant.CONTACTFORM_VIEW;
     }
+
+    @PostMapping("/addcontact")
+    public String addContact(@ModelAttribute(name="contactModel") ContactModel contactModel) {
+        LOG.info("METHOD: addContact() -- PARAMS: contactModel=" + contactModel.toString());
+        return ViewConstant.CONTACTS_VIEW;
+    }
+    
 }
