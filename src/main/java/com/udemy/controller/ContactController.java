@@ -32,8 +32,11 @@ public class ContactController {
     }
 
     @PostMapping("/addcontact")
-    public String addContact(@ModelAttribute(name="contactModel") ContactModel contactModel) {
+    public String addContact(@ModelAttribute(name="contactModel") ContactModel contactModel,
+            Model model) {
         LOG.info("METHOD: addContact() -- PARAMS: contactModel=" + contactModel.toString());
+        model.addAttribute("result", 1);
+        // model.addAttribute("contactModel", contactModel);
         return ViewConstant.CONTACTS_VIEW;
     }
     
