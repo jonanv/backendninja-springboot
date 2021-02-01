@@ -7,7 +7,7 @@ import com.udemy.model.ContactModel;
 
 public interface ContactService {
 
-    // public abstract List<Contact> listAllContact();
+    public abstract List<ContactModel> listAllContacts();
 
     public abstract ContactModel addContact(ContactModel contactModel);
 

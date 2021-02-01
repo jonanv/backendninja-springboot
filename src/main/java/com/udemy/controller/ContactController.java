@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -28,7 +29,7 @@ public class ContactController {
 
     @GetMapping("/cancel")
     public String cancel() {
-        return ViewConstant.CONTACTS_VIEW;
+        return "redirect:/contacts/showcontacts";
     }
     
     @GetMapping("/contactform")
@@ -49,8 +50,20 @@ public class ContactController {
         } else {
             model.addAttribute("result", 0);
         }
-        return ViewConstant.CONTACTS_VIEW;
+        return "redirect:/contacts/showcontacts";
         
     }
+
+    @GetMapping("/showcontacts")
+    public ModelAndView showContacts() {
+        LOG.info("METHOD: listAllContact()");
+        ModelAndView mav = new ModelAndView(ViewConstant.CONTACTS_VIEW);
+        mav.addObject("contacts", contactService.listAllContacts());
+        return mav;
+    }
+    // https://mega.nz/file/C0oD1QwB#H67qvf-26bFOv_FkyrDH9XaWTFuuope21LnleV97Gas
+    // https://mega.nz/file/C1pVCAzQ#iVBPJIEz14oSXJeWWxRIP5PItQuEmtFWEOg2-RE8If0
+
+    // Contraseña: zonaleros
     
 }

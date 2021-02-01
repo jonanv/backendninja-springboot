@@ -1,5 +1,6 @@
 package com.udemy.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.udemy.component.ContactConverter;
@@ -29,10 +30,15 @@ public class ContactServiceImpl implements ContactService {
         return contactConverter.convertContact2ContactModel(contact);
     }
 
-    // @Override
-    // public List<Contact> listAllContact() {
-    //     return null;
-    // }
+    @Override
+    public List<ContactModel> listAllContacts() {
+        List<Contact> contacts = contactRepository.findAll();
+        List<ContactModel> contactsModel = new ArrayList<ContactModel>();
+        for (Contact contact : contacts) {
+            contactsModel.add(contactConverter.convertContact2ContactModel(contact));
+        }
+        return contactsModel;
+    }
 
     // @Override
     // public int removeContact(int id) {
