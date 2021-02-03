@@ -1,6 +1,7 @@
 package com.udemy.controller;
 
 import com.udemy.constant.ViewConstant;
+import com.udemy.entity.Contact;
 import com.udemy.model.ContactModel;
 import com.udemy.service.ContactService;
 
@@ -34,9 +35,14 @@ public class ContactController {
     }
     
     @GetMapping("/contactform")
-    public String redirectContactForm(Model model) {
+    public String redirectContactForm(@RequestParam(name="id", required=false) int id, 
+            Model model) {
         LOG.info("METHOD: redirectContactForm()");
-        model.addAttribute("contactModel", new ContactModel());
+        ContactModel contact = new ContactModel();
+        if (id != 0) {
+            contact = contactService.findContactByIdModel(id);
+        }
+        model.addAttribute("contactModel", contact);
         return ViewConstant.CONTACTFORM_VIEW;
     }
 
@@ -47,17 +53,15 @@ public class ContactController {
 
         if (contactService.addContact(contactModel) != null) {
             model.addAttribute("result", 1);
-            return ViewConstant.CONTACTS_VIEW;
         } else {
             model.addAttribute("result", 0);
         }
         return "redirect:/contacts/showcontacts";
-        
     }
 
     @GetMapping("/showcontacts")
     public ModelAndView showContacts() {
-        LOG.info("METHOD: listAllContact()");
+        LOG.info("METHOD: showContacts()");
         ModelAndView mav = new ModelAndView(ViewConstant.CONTACTS_VIEW);
         mav.addObject("contacts", contactService.listAllContacts());
         return mav;
