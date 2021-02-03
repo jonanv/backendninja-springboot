@@ -11,8 +11,8 @@ public interface ContactService {
 
     public abstract ContactModel addContact(ContactModel contactModel);
 
-    // public abstract Contact updateContact(Contact contact);
+    public abstract Contact findContactById(int id);
 
-    // public abstract int removeContact(int id);
+    public abstract void removeContact(int id);
 
 }
