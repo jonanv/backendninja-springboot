@@ -14,12 +14,16 @@ public class Contact {
     @GeneratedValue
     @Column(name="id")
     private int id;
+
     @Column(name="firstname")
     private String firstname;
+
     @Column(name="lastname")
     private String lastname;
+
     @Column(name="telephone")
     private String telephone;
+    
     @Column(name="city")
     private String city;
 
