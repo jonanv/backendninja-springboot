@@ -1,6 +1,7 @@
 package com.udemy.controller;
 
 import com.udemy.constant.ViewConstant;
+import com.udemy.entity.User;
 import com.udemy.model.ContactModel;
 import com.udemy.service.ContactService;
 
@@ -8,6 +9,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +36,9 @@ public class ContactController {
         return "redirect:/contacts/showcontacts";
     }
     
+    // @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    // @PreAuthorize("hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')")
+    @PreAuthorize("permitAll()") // Se puede agerga a nivel de metodo o nivel de clase
     @GetMapping("/contactform")
     public String redirectContactForm(@RequestParam(name="id", required=false) int id, 
             Model model) {
@@ -62,6 +68,10 @@ public class ContactController {
     public ModelAndView showContacts() {
         LOG.info("METHOD: showContacts()");
         ModelAndView mav = new ModelAndView(ViewConstant.CONTACTS_VIEW);
+
+        // User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        mav.addObject("username", "user.getUsername()");
+
         mav.addObject("contacts", contactService.listAllContacts());
         return mav;
     }
