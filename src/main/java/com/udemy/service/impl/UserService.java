@@ -31,6 +31,14 @@ public class UserService implements UserDetailsService {
         List<GrantedAuthority> authorities = buildAuthorities(user.getUserRole());
         return buildUser(user, authorities);
     }
+    
+    private List<GrantedAuthority> buildAuthorities(Set<UserRole> userRoles) {
+        Set<GrantedAuthority> auths = new HashSet<GrantedAuthority>();
+        for (UserRole userRole : userRoles) {
+            auths.add(new SimpleGrantedAuthority(userRole.getRole()));
+        }
+        return new ArrayList<GrantedAuthority>(auths);
+    }
 
     private User buildUser(com.udemy.entity.User user, List<GrantedAuthority> authorities) {
         return new User(
@@ -42,13 +50,4 @@ public class UserService implements UserDetailsService {
             true, 
             authorities);
     }
-
-    private List<GrantedAuthority> buildAuthorities(Set<UserRole> userRoles) {
-        Set<GrantedAuthority> auths = new HashSet<GrantedAuthority>();
-        for (UserRole userRole : userRoles) {
-            auths.add(new SimpleGrantedAuthority(userRole.getRole()));
-        }
-        return new ArrayList<GrantedAuthority>(auths);
-    }
-    
 }
