@@ -26,6 +26,14 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
     private LogRepository logRepository;
 
     // Primero se ejecuta
+    
+    /** 
+     * @param request
+     * @param response
+     * @param handler
+     * @return 
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
@@ -34,6 +42,15 @@ public class RequestTimeInterceptor extends HandlerInterceptorAdapter {
     }
     
     // Segundo se ejecuta
+    
+    /** 
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @return 
+     * @throws Exception
+     */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
